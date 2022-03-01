@@ -3,7 +3,7 @@ runtime: nodejs14
 build:
   commands:
     build:
-      - npm install --production && npm run build
+      - npm install && npm run build
 run:
   command: npm run start:prod
   network:
