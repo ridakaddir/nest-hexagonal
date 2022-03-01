@@ -1,0 +1,8 @@
+version: 1.0
+runtime: nodejs14
+build:
+  commands:
+    build:
+      - npm install --production
+run:
+  command: npm run start:prod
