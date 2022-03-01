@@ -6,3 +6,6 @@ build:
       - npm install --production
 run:
   command: npm run start:prod
+  network:
+    port: 3000
+    env: APP_PORT
