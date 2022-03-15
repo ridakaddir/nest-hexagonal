@@ -14,7 +14,7 @@ import { CampaignsService } from './domain/ports/campaigns.service';
     CampaignsApiService,
     {
       provide: CampaignsRepository,
-      useClass: CampaignsInMemory,
+      useClass: CampaignsInMemory, // can add condition on ENV, inject mock impl for unit testing
     },
   ],
 })

@@ -1,8 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import {
-  Campaign,
-  CampaignsService,
-} from 'src/campaigns/domain/ports/campaigns.service';
+import { Campaign } from 'src/campaigns/domain/model/campaign.model';
+import { CampaignsService } from 'src/campaigns/domain/ports/campaigns.service';
 import { CreateCampaignDto } from './dto/CreateCampaignDto';
 
 @Injectable()

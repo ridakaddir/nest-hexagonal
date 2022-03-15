@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { Campaign } from 'src/campaigns/domain/model/campaign.model';
 import { CampaignsRepository } from 'src/campaigns/domain/ports/campaigns.repository';
-import { Campaign } from 'src/campaigns/domain/ports/campaigns.service';
 
 @Injectable()
 export class CampaignsInMemory implements CampaignsRepository {

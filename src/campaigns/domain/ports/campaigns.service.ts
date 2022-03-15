@@ -1,30 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { randomUUID } from 'crypto';
+import { Campaign } from '../model/campaign.model';
 import { CampaignsRepository } from './campaigns.repository';
-
-export class Campaign {
-  private id: string;
-  name: string;
-  type: string;
-  startDate: Date;
-  endDate: Date;
-  value: Number;
-
-  constructor(
-    name: string,
-    type: string,
-    startDate: Date,
-    endDate: Date,
-    value: Number,
-  ) {
-    this.id = randomUUID();
-    this.name = name;
-    this.type = type;
-    this.startDate = startDate;
-    this.endDate = endDate;
-    this.value = value;
-  }
-}
 
 @Injectable()
 export class CampaignsService {
