@@ -2,8 +2,11 @@ version: 1.0
 runtime: nodejs14
 build:
   commands:
+    # pre-build:
+    #   - npm install
     build:
-      - npm install && npm run build
+      - npm install
+      - npm run build
 run:
   command: npm run start:prod
   network:
