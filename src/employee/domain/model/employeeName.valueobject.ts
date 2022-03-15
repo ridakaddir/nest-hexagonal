@@ -1,7 +1,6 @@
 import { BadRequestException } from '@nestjs/common';
-import { randomUUID } from 'crypto';
 
-export class CampaignName {
+export class EmployeeName {
   private value: string;
 
   private constructor(value: string) {
@@ -13,7 +12,7 @@ export class CampaignName {
   }
 
   public static of(name: string) {
-    return new CampaignName(name);
+    return new EmployeeName(name);
   }
 
   public get(): string {

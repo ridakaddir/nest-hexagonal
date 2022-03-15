@@ -1,29 +1,24 @@
 import { Module, ValidationPipe, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { CampaignsModule } from './campaigns/campaigns.module';
+import { EmployeeModule } from './employee/employee.module';
 import helmet from 'helmet';
 
-
 @Module({
-  imports: [CampaignsModule],
+  imports: [EmployeeModule],
   controllers: [],
   providers: [],
 })
-export class AppModule { }
-
+export class AppModule {}
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     // logger: console
   });
-  app.useGlobalPipes(new ValidationPipe(
-    { whitelist: true }
-  ));
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   app.enableVersioning({
     type: VersioningType.URI,
   });
   // app.use(helmet());
-
 
   await app.listen(3000);
 }

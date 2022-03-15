@@ -1,26 +1,26 @@
 import { randomUUID } from 'crypto';
-import { CampaignName } from './campaignName.valueobject';
+import { EmployeeName } from './employeeName.valueobject';
 
-export class Campaign {
+export class Employee {
   private id: string;
-  name: CampaignName;
+  name: EmployeeName;
   type: string;
   startDate: Date;
   endDate: Date;
-  value: Number;
+  salary: Number;
 
   constructor(
     name: string,
     type: string,
     startDate: Date,
     endDate: Date,
-    value: Number,
+    salary: Number,
   ) {
     this.id = randomUUID();
-    this.name = CampaignName.of(name);
+    this.name = EmployeeName.of(name);
     this.type = type;
     this.startDate = startDate;
     this.endDate = endDate;
-    this.value = value;
+    this.salary = salary;
   }
 }
