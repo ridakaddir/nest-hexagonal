@@ -1,5 +1,7 @@
 # NestJS -Clean code using Hexagonal Architecture
 
+## Introduction
+
 Software architecture is key in responding to dynamic market pressures, a well-designed software allows the company to deliver new features faster to meet evolving user needs.
 
 I remember in my early days as an SDE, I was always looking for how can I better structure my code, to make it easy to understand and add new features for my colleges and future me. so I was constantly refactoring my working feature trying to find the perfect Application Architecture. yes, I was young and stupid, and I am today as well. ‍😄
@@ -7,7 +9,7 @@ Then later I discovered **SOLID** principles, **clean code**, **Domain-Driven De
 
 I know many of you already read about clean code, SOLID and HA. but today I decided to write an article where I'll be explaining step by step how to implement these principles using HA with [NestJS](https://github.com/nestjs/nest).
 
-## Before we go further, why should I use HA? 💁🏽‍♂️
+## Why should I use HA? 💁🏽‍♂️
 
 With the adoption of cloud-managed services in our applications, it makes more sense to use HA because it allows us to replace and maintain infrastructure components code in complete isolation from our business logic code, which protects our features from regression. 
 Infrastructure components code examples: storing blob objects into AWS S3 bucket, publishing an event into an AWS SNS topic…
@@ -29,9 +31,73 @@ the
 
 To start we need an existing or new [Nest](https://github.com/nestjs/nest) application, then create a new module, in my case I created a module named `employee`
 
-```bash
-$ nest generate modue
 ```
+nest generate modue
+```
+
+Inside our module w'll need to create some directories where w'll be creating our Domain Enities, Input Ports, Output Ports and Adapters
+
+```
+cd employee && mkdir -p apdapters domain/model domain/ports
+```
+
+now let's start implementing our Entity `employee`
+to introduce the concept of value object I'll create a value object for the employee name, for this let's create a class named `EmployeeName` inside the model directory.
+
+```typescript {.line-numbers}
+export class EmployeeName {
+  private value: string;
+
+  private constructor(value: string) {
+    if (value == 'invalid name') {
+      throw new Error('value not valid');
+    }
+
+    this.value = value;
+  }
+
+  public static of(name: string) {
+    return new EmployeeName(name);
+  }
+
+  public get(): string {
+    return this.value;
+  }
+}
+```
+
+then create an `Employee` class
+
+```typescript {.line-numbers, highlight=6}
+import { randomUUID } from 'crypto';
+import { EmployeeName } from './employeeName.valueobject';
+
+export class Employee {
+  private id: string;
+  name: EmployeeName;
+  type: string;
+  startDate: Date;
+  endDate: Date;
+  salary: Number;
+
+  constructor(
+    name: string,
+    type: string,
+    startDate: Date,
+    endDate: Date,
+    salary: Number,
+  ) {
+    this.id = randomUUID();
+    this.name = EmployeeName.of(name);
+    this.type = type;
+    this.startDate = startDate;
+    this.endDate = endDate;
+    this.salary = salary;
+  }
+}
+```
+
+Notice here that the attribute `name` is of type [value object](https://martinfowler.com/bliki/ValueObject.html) `EmployeeName`, which give a better readability to our code. instead of a string type that could accept any value, now we know that we need to provide a valid object of type `EmployeeName` . If we provide an invald name the value object will verify it against the implemented business rule then throw an exeption, `EmployeeName` class line number 6.
 
 ## Support
 

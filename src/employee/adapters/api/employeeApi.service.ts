@@ -1,19 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { Employee } from 'src/employee/domain/model/employee.model';
 import { EmployeeService } from 'src/employee/domain/ports/employee.service';
-import { CreateEmployeeDto } from './dto/createEmployee.dto';
+import { EmployeeCommand } from './employee.command';
 
 @Injectable()
 export class EmployeeApiService {
   constructor(private employeeService: EmployeeService) {}
 
-  create(createEmployeeDto: CreateEmployeeDto): Employee {
+  create(employeeCommand: EmployeeCommand): Employee {
     return this.employeeService.create(
-      createEmployeeDto.name,
-      createEmployeeDto.type,
-      createEmployeeDto.startDate,
-      createEmployeeDto.endDate,
-      createEmployeeDto.salary,
+      employeeCommand.name,
+      employeeCommand.type,
+      employeeCommand.startDate,
+      employeeCommand.endDate,
+      employeeCommand.salary,
     );
   }
 
