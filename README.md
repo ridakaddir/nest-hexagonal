@@ -7,7 +7,7 @@ Then later I discovered **SOLID** principles, **clean code**, **Domain-Driven De
 
 I know many of you already read about clean code, SOLID and HA. but today I decided to write an article where I'll be explaining step by step how to implement these principles using HA with [NestJS](https://github.com/nestjs/nest).
 
-#### Before we go further, why should I use HA? 💁🏽‍♂️
+## Before we go further, why should I use HA? 💁🏽‍♂️
 
 With the adoption of cloud-managed services in our applications, it makes more sense to use HA because it allows us to replace and maintain infrastructure components code in complete isolation from our business logic code, which protects our features from regression. 
 Infrastructure components code examples: storing blob objects into AWS S3 bucket, publishing an event into an AWS SNS topic…
@@ -16,7 +16,7 @@ Storing our users' images in S3 or in desk, publishing users events into SNS or 
 On the other hand, 
 Another reason is unit tests, HA make writing unit tests easy as it allows you to test your Business code
 
-#### Application Architecture?
+## Application Architecture?
 
 ![Architecture](./architecture.drawio.png)
 
@@ -25,7 +25,7 @@ How?
 The output ports allow us to extend our code by adding Adapters as needed then use DI (dependency injection) to orchestrate which Adapter implementation to execute.
 the
 
-#### Coding time!
+## Coding time!
 
 To start we need an existing or new [Nest](https://github.com/nestjs/nest) application, then create a new module, in my case I created a module named `employee`
 
