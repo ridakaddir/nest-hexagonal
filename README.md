@@ -42,7 +42,7 @@ cd employee && mkdir -p apdapters domain/model domain/ports
 ```
 
 now let's start implementing our Entity `employee`
-to introduce the concept of value object I'll create a value object for the employee name, for this let's create a class named `EmployeeName` inside the model directory.
+to introduce the concept of [value object](https://martinfowler.com/bliki/ValueObject.html) I'll create a value object for the employee name, for this let's create a class named `EmployeeName` inside the model directory.
 
 ```typescript {.line-numbers}
 export class EmployeeName {
@@ -97,7 +97,7 @@ export class Employee {
 }
 ```
 
-Notice here that the attribute `name` is of type [value object](https://martinfowler.com/bliki/ValueObject.html) `EmployeeName`, which give a better readability to our code. instead of a string type that could accept any value, now we know that we need to provide a valid object of type `EmployeeName` . If we provide an invald name the value object will verify it against the implemented business rule then throw an exeption, `EmployeeName` class line number 6.
+Notice here that the attribute `name` is of type value object `EmployeeName`, which give a better readability to our code. instead of a string type that could accept any value, now we know that we need to provide a valid object of type `EmployeeName` . If we provide an invald name the value object will verify it against the implemented business rule then throw an exeption, `EmployeeName` class line number 6.
 
 ## Support
 
