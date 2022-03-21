@@ -16,8 +16,6 @@ FROM node:14-alpine
 
 WORKDIR /app
 
-COPY package.json ./
-
 COPY --from=build /build/node_modules ./node_modules
 COPY --from=build /build/dist ./
 EXPOSE 3000
