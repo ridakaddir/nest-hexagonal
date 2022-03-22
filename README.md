@@ -2,21 +2,24 @@
 
 ## Introduction
 
+"**the only constant is change**"
 Software architecture is key in responding to dynamic market pressures, a well-designed software allows the company to deliver new features faster to meet evolving user needs.
 
 I remember in my early days as an SDE, I was always looking for how can I better structure my code, to make it easy to understand and add new features for my colleges and future me. so I was constantly refactoring my working feature trying to find the perfect Application Architecture. yes, I was young and stupid, and I am today as well. ‍😄
 Then later I discovered **SOLID** principles, **clean code**, **Domain-Driven Design** and the **HA** (Hexagonal Architecture). this was a big discovery for me because that was exactly what I was looking for.
 
-I know many of you already read about clean code, SOLID and HA. but today I decided to write an article where I'll be explaining step by step how to implement these principles using HA with [NestJS](https://github.com/nestjs/nest).
+I know many of you already read about clean code, SOLID and HA. but today I decided to write an article where I'll be explaining step by step how to implement these principles using HA with [NestJS](https://github.com/nestjs/nest) Framework.
 
-## Why should I use HA? 💁🏽‍♂️
+## Why and When should I use HA? 💁🏽‍♂️
 
-With the adoption of cloud-managed services in our applications, it makes more sense to use HA because it allows us to replace and maintain infrastructure components code in complete isolation from our business logic code, which protects our features from regression. 
+With the adoption of cloud-managed services in our applications and the high frequency cloud providers ship new capabilities that help to improve our application performence and/or reduce its cost.
+To keep up with an evolving market, and a demanding customer. If there is one thing we are sure about is Technical and Business **Request For Change**.
+In this circumstances, it makes more sense to use HA because it allows us to replace and maintain infrastructure components code and business logic code in total isolation, which protects us from code regression.
 Infrastructure components code examples: storing blob objects into AWS S3 bucket, publishing an event into an AWS SNS topic…
 All this code has nothing to do with our Business features (Domain)and has NO direct business value. 
 Storing our users' images in S3 or in desk, publishing users events into SNS or SQS, migrating from SNS to EventBridge, trigger the business logic synchronously from an HTTP call or asynchronously from an Event. all these NFRs (Non-functional requirements) are requested by a technical person, an Architect, a technical lead or a developer. and all its related code should reside in a dedicated package (the adapters).
-On the other hand, 
-Another reason is unit tests, HA make writing unit tests easy as it allows you to test your Business code
+On the other hand, a business requirement like send an email notification after a user uploads an image should NOT change my infrastructure code responsible for uploading images to S3.  
+Another reason is automated tests, HA makes writing Unit and Integration tests easy, as it allows you to test your Business code without requiring your infrastructure to be set up. for example you can mock an AWS S3 service in your code to Unit test your business logic, or create an AWS S3 service stub to run your integration tests.
 
 ## Application Architecture?
 
@@ -35,7 +38,7 @@ To start we need an existing or new [Nest](https://github.com/nestjs/nest) appli
 nest generate modue
 ```
 
-Inside our module w'll need to create some directories where w'll be creating our Domain Enities, Input Ports, Output Ports and Adapters
+Inside our module w'll need to create some directories where w'll be creating our Domain Entities, Input Ports, Output Ports and Adapters.
 
 ```
 cd employee && mkdir -p apdapters domain/model domain/ports
