@@ -1,8 +1,8 @@
 import { Logger, Module } from '@nestjs/common';
-import { TicketController } from './adapters/api/employee.controller';
+import { TicketController } from './adapters/api/ticket.controller';
 import { TicketApiService } from './adapters/api/ticketApi.service';
 import { TicketRepository } from './domain/ports/ticket.repository';
-import { TicketInMemory } from './adapters/employeedb/employeeInMemory.repository';
+import { TicketInMemory } from './adapters/db/ticketInMemory.repository';
 import { TicketService } from './domain/ports/ticket.service';
 
 @Module({
