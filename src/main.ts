@@ -1,10 +1,10 @@
 import { Module, ValidationPipe, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { EmployeeModule } from './employee/employee.module';
+import { TicketModule } from './ticket/ticket.module';
 import helmet from 'helmet';
 
 @Module({
-  imports: [EmployeeModule],
+  imports: [TicketModule],
   controllers: [],
   providers: [],
 })
